@@ -1,0 +1,35 @@
+version: '3.9'
+
+services:
+  db:
+    platform: linux/arm64
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wpuser
+      MYSQL_PASSWORD: userpassword
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3307:3306"     # changed host port to 3307 to avoid conflict
+
+  wordpress:
+    platform: linux/arm64
+    depends_on:
+      - db
+    image: wordpress:latest
+    restart: always
+    ports:
+      - "8081:80"       # Note: changed port mapping to 80 inside container (default WordPress port)
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_PASSWORD: userpassword
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - ./wp-content:/var/www/html/wp-content
+
+volumes:
+  db_data:
