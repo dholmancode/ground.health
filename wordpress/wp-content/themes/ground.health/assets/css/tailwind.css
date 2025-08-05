@@ -1,0 +1,254 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1, h2, h3, h4, h5 {
+    @apply font-heading;
+  }
+
+  p, a, ul, ol {
+    @apply font-body;
+  }
+
+  h1 {
+    @apply text-4xl font-extrabold;
+  }
+
+  h2 {
+    @apply text-3xl font-bold;
+  }
+
+  h3 {
+    @apply text-2xl font-semibold;
+  }
+
+  h4 {
+    @apply text-xl font-medium;
+  }
+
+  h5 {
+    @apply text-lg font-medium;
+  }
+
+  p {
+    @apply text-base font-normal;
+  }
+
+  a {
+    @apply text-base font-medium text-brand-tealLight hover:text-brand-accent transition duration-[300ms] underline;
+  }
+
+  /* Don't underline links with 'btn' class */
+  a.btn,
+  a[class*="btn"],
+  a[class*="button"] {
+    @apply no-underline;
+  }
+
+  ul {
+    @apply list-disc list-inside;
+  }
+
+  ol {
+    @apply list-decimal list-inside;
+  }
+
+  li {
+    @apply mb-1;
+  }
+}
+
+body {
+  background-color: #333;
+}
+
+.main-nav {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50px;
+  padding: 20px 3vw 15px 3vw;
+}
+
+/* Use Montserrat for nav links */
+.main-nav a,
+nav a {
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #E59C59;
+  transition: color 0.7s ease;
+}
+
+/* Center-out underline effect */
+.main-nav a::after,
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  border-radius: 50px;
+  width: 100%;
+  height: 3px;
+  border-radius: 9999px; /* fully rounded underline */
+  background-color: #0F9997;
+  transition: transform 0.3s ease;
+}
+
+/* Animate underline on hover */
+.main-nav a:hover::after,
+nav a:hover::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+#bar1, #bar2, #bar3 {
+  background-color: white;
+  border-radius: 50px;
+}
+
+
+.dgh-hero-cta a{
+  text-decoration: none;
+}
+
+/* Custom Scrollbar */
+.custom-scroll::-webkit-scrollbar {
+  width: 10px;
+  margin-left: 10px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: #8d8d8d;
+  border-radius: 20px;
+  margin-left: 10px;
+
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background-color: #0F9997; /* brand tealLight */
+  border-radius: 20px;
+  border: 2px solid #8d8d8d;
+  margin-left: 10px;
+
+}
+
+/* For Firefox */
+.custom-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #0F9997 #333;
+}
+
+.project-detail-tab {
+  background-color: #4B1521; /* default brand-dark background */
+  color: white; /* default text */
+}
+
+.project-detail-tab.is-active {
+  background-color: #4B1521 !important; /* keep it dark when active */
+  color: #0F9997 !important; /* lightTeal text */
+}
+
+#project-detail-content {
+  opacity: 1;
+  transition: opacity 0.4s ease;
+  /* Make sure it doesn't occupy space when invisible */
+  visibility: visible;
+}
+
+#project-detail-content.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+#project-detail-content.fade-in {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Form labels */
+.wpcf7-form label {
+  display: block;
+  font-weight: 600;
+  color: #4dd0e1; /* brand-tealLight */
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+/* Text inputs and email */
+.wpcf7-form input[type="text"],
+.wpcf7-form input[type="email"],
+.wpcf7-form textarea {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #00838f; /* brand-tealDark */
+  border-radius: 12px;
+  background-color: #1c1c1c;
+  color: #d1f2f7; /* lighter teal */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline-offset: 2px;
+}
+
+/* Focus state */
+.wpcf7-form input[type="text"]:focus,
+.wpcf7-form input[type="email"]:focus,
+.wpcf7-form textarea:focus {
+  border-color: #fbbf24; /* brand-accent gold/yellow */
+  box-shadow: 0 0 5px #fbbf24;
+  background-color: #262626;
+  color: #ffffff;
+}
+
+/* Textarea - allow vertical resizing only */
+.wpcf7-form textarea {
+  resize: vertical;
+  min-height: 120px;
+  font-family: inherit;
+}
+
+/* Submit button */
+.wpcf7-form input[type="submit"] {
+  background-color: #005f6b; /* brand-tealDark */
+  color: #81ecec; /* brand-tealLight */
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 9999px; /* fully rounded */
+  cursor: pointer;
+  box-shadow: 0 4px 0 0 #e59c59;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  margin-top: 1rem;
+  display: inline-block;
+  text-align: center;
+}
+
+/* Submit hover */
+.wpcf7-form input[type="submit"]:hover {
+  background-color: #333333; /* brand-dark */
+  color: #fbbf24; /* brand-accent */
+  box-shadow: 0 2px 0 0 #fbbf24;
+  transform: translateY(2px);
+  transition-timing-function: ease-out;
+}
+
+/* Optional: Error message styling */
+.wpcf7-not-valid-tip {
+  color: #fbbf24;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+/* Optional: Success message styling */
+.wpcf7-mail-sent-ok {
+  color: #81ecec;
+  font-weight: 600;
+  margin-top: 1rem;
+}

@@ -1,0 +1,34 @@
+version: '3.9'
+
+services:
+  wordpress:
+    image: wordpress:latest
+    platform: linux/amd64            # Ensure compatibility with Apple Silicon Macs
+    container_name: groundhealth-wordpress
+    ports:
+      - "8081:80"                   # Changed host port to 8081 to avoid conflicts
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_PASSWORD: wpuserpassword
+      WORDPRESS_DB_NAME: wordpressdb
+    volumes:
+      - ./wp-content:/var/www/html/wp-content
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    platform: linux/amd64            # Same here for consistency
+    container_name: groundhealth-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: wordpressdb
+      MYSQL_USER: wpuser
+      MYSQL_PASSWORD: wpuserpassword
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
