@@ -28,9 +28,9 @@ document.addEventListener('DOMContentLoaded', function () {
     if (logo) {
       if (scrolled) {
         logo.classList.remove('max-w-[120px]', 'sm:max-w-[160px]', 'lg:max-w-[200px]');
-        logo.classList.add('max-w-[50px]');
+        logo.classList.add('max-w-[90px]');
       } else {
-        logo.classList.remove('max-w-[50px]');
+        logo.classList.remove('max-w-[90px]');
         logo.classList.add('max-w-[120px]', 'sm:max-w-[160px]', 'lg:max-w-[200px]');
       }
     }
@@ -78,4 +78,57 @@ document.addEventListener('DOMContentLoaded', function () {
       document.body.classList.toggle('menu-open', isOpen);
     });
   }
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const section = document.querySelector('.card-section');
+  if (!section) return;
+
+  const cards = Array.from(section.querySelectorAll('.card'));
+  let sectionInView = false;
+  let inTimers = [];
+  let outTimers = [];
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !sectionInView) {
+          sectionInView = true;
+          // clear any pending out timers
+          outTimers.forEach(t => clearTimeout(t));
+          outTimers = [];
+
+          // stagger in
+          cards.forEach((card, i) => {
+            const t = setTimeout(() => {
+              card.classList.add('animate-in');
+              card.classList.remove('animate-out');
+            }, i * 350); // 150ms stagger
+            inTimers.push(t);
+          });
+        } else if (!entry.isIntersecting && sectionInView) {
+          sectionInView = false;
+          // clear pending in timers
+          inTimers.forEach(t => clearTimeout(t));
+          inTimers = [];
+
+          // stagger out (reverse order optional)
+          cards.forEach((card, i) => {
+            const t = setTimeout(() => {
+              card.classList.remove('animate-in');
+              card.classList.add('animate-out');
+            }, i * 100);
+            outTimers.push(t);
+          });
+        }
+      });
+    },
+    {
+      root: null,
+      threshold: 0.2,
+    }
+  );
+
+  observer.observe(section);
 });

@@ -9,17 +9,17 @@ $image_order_class = $image_on_right ? 'md:order-2' : 'md:order-1';
 $text_order_class  = $image_on_right ? 'md:order-1' : 'md:order-2';
 ?>
 
-<section class="zoom-in container mx-auto px-4 py-16 flex flex-col md:flex-row items-center gap-8">
+<section class="zoom-in h-auto py-[150px] container mx-auto px-4 flex flex-col md:flex-row items-center justify-center gap-2 animate-in">
 
   <?php if ($image): ?>
-    <div class="md:w-1/2 <?php echo esc_attr($image_order_class); ?>">
+    <div class="<?php echo esc_attr($image_order_class); ?>">
       <img src="<?php echo esc_url($image['url']); ?>" 
            alt="<?php echo esc_attr($image['alt']); ?>" 
-           class="rounded-lg shadow-lg w-full object-cover">
+           class="h-[400px] m-6 w-auto rounded-lg shadow-lg object-cover">
     </div>
   <?php endif; ?>
 
-  <div class="md:w-1/2 <?php echo esc_attr($text_order_class); ?>">
+  <div class="m-6 md:w-1/2 <?php echo esc_attr($text_order_class); ?>">
     <?php if ($title): ?>
       <h2 class="text-3xl font-semibold text-white mb-4">
         <?php echo esc_html($title); ?>

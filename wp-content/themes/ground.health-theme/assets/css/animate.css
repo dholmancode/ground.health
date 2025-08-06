@@ -207,3 +207,60 @@
   0%, 100% { transform: scale(1.3);}
   50% { transform: scale(1.5);}
 }
+
+/* Base card state */
+.card {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Animated-in state */
+.card.animate-in {
+  animation: fadeInUp 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+/* Optional: animate-out if you want reverse (fade down) */
+.card.animate-out {
+  animation: fadeOutDown 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+/* Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+/* Arrow initial state */
+.card .arrow {
+  transform: translateX(0);
+  opacity: 1;
+  cursor: pointer;
+}
+
+/* On hover, arrow slides slightly and brightens */
+.card.group:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* Optional: add a subtle underline/indicator that appears */
+.card .arrow-glow {
+  filter: drop-shadow(0 0 6px rgba(253, 253, 253, 0.3));
+}
+

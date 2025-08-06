@@ -3,7 +3,7 @@
 <head>
   <meta charset="<?php bloginfo('charset'); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@500;600&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@400;700&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
   <?php wp_head(); ?>
 </head>
 
@@ -38,7 +38,7 @@
     </button>
 
     <!-- Desktop Nav -->
-    <nav class="main-nav shadow-lg hidden lg:flex">
+    <nav class="font-extrabold text-brand-primary main-nav shadow-lg hidden lg:flex">
       <?php
       wp_nav_menu([
         'theme_location' => 'primary',

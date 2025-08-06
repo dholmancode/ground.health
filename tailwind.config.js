@@ -7,8 +7,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        heading: ['Poppins', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
+        heading: ['Playfair Display', 'sans-serif'],          // Primary for headings
+        body: ['Raleway', 'sans-serif'],               // Secondary for body
       },
       colors: {
         brand: {
