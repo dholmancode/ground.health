@@ -21,17 +21,17 @@ for ($i = 1; $i <= 3; $i++) {
 }
 ?>
 
-<section class="zoom-in relative h-[850px] flex bg-black text-white py-32">
+<section class="zoom-in relative sm:h-[850px] flex bg-black text-white py-32">
   <?php if ($overlay_color): ?>
     <div class="absolute inset-0" style="background-color: <?php echo esc_attr($overlay_color); ?>; opacity: 0.5; pointer-events: none;"></div>
   <?php endif; ?>
 
-  <div class="pt-[230px] flex relative container mx-auto px-4 max-w-4xl text-center">
-    <div class="prose prose-lg prose-invert mx-auto max-w-none">
+  <div class="pt-[150px] flex flex-col md:flex-row relative container mx-auto px-4 max-w-4xl text-center">
+    <div class="prose prose-lg p-5 prose-invert mx-auto max-w-none">
       <?php echo wp_kses_post($cta_content); ?>
     </div>
 
-    <div class="flex flex-col items-center gap-4">
+    <div class="flex flex-col mt-6 items-center gap-4">
       <?php foreach ($buttons as $btn): ?>
         <a href="<?php echo esc_url($btn['url']); ?>"
            target="<?php echo esc_attr($btn['target']); ?>"
